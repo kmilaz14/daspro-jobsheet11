@@ -44,17 +44,31 @@ public class Kafe13 {
         String kodePromo = "DISKON30";
         boolean isMember = true;
         Menu("Andi", isMember, kodePromo);
-        System.out.print("\nMasukkan nomor menu yang ingin Anda pesan: ");
-        int pilihanMenu = sc.nextInt();
 
-        while (pilihanMenu<1 || pilihanMenu>6) {
-            System.out.println("Pilihan menu tidak valid. Silahkan maasukkan nomor menu yang benar (1-6): ");
-            pilihanMenu = sc.nextInt();
-        }
-        System.out.print("Masukkan jumlah item yang ingin dipesan: ");
-        int banyakItem = sc.nextInt();
+        int totalKeseluruhan = 0;
+        String orderan;
+        do {
+            System.out.print("\nMasukkan nomor menu yang ingin Anda pesan: ");
+            int pilihanMenu = sc.nextInt();
+    
+            while (pilihanMenu<1 || pilihanMenu>6) {
+                System.out.println("Pilihan menu tidak valid. Silahkan maasukkan nomor menu yang benar (1-6): ");
+                pilihanMenu = sc.nextInt();
+            }
+            System.out.print("Masukkan jumlah item yang ingin dipesan: ");
+            int banyakItem = sc.nextInt();
+    
+            int totalHarga = hitungTotalHarga13(pilihanMenu, banyakItem, isMember, kodePromo);
+            System.out.println("Total harga untuk pesanan Anda: Rp " + totalHarga);
 
-        int totalHarga = hitungTotalHarga13(pilihanMenu, banyakItem, isMember, kodePromo);
-        System.out.println("Total harga untuk pesanan Anda: Rp " + totalHarga);
+            totalKeseluruhan += totalHarga;
+
+            System.out.print("Apakah Anda ingin memesan lagi? (ya/tidak): ");
+            orderan = sc.next();
+        } while (orderan.equalsIgnoreCase("ya"));
+
+        System.out.println("Total keseluruhan pesanan Anda: Rp " + totalKeseluruhan);
+       
     }
 }
+
