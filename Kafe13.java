@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 public class Kafe13 {
     public static void Menu(String namaPelanggan, boolean isMember, String kodePromo){
         System.out.println("Selamat datang, " + namaPelanggan + "!");
@@ -23,7 +25,38 @@ public class Kafe13 {
         System.out.println("=========================");
         System.out.println("Silahkan pilih menu yang Anda inginkan");
     }
+    public static int hitungTotalHarga13(int pilihanMenu, int banyakItem, boolean isMember, String kodePromo){
+        int[]hargaItems = {15000, 20000, 22000, 12000, 10000, 18000};
+        int hargaTotal = hargaItems[pilihanMenu-1]*banyakItem;
+
+        if (isMember==true){
+            hargaTotal *= 0.9;
+        }
+
+        if (kodePromo.equals("DISKON50")) {
+            hargaTotal *= 0.5;
+        } else if (kodePromo.equals("DISKON30")) {
+            hargaTotal *= 0.7;
+        }
+        return hargaTotal;
+    }
+
     public static void main(String[] args) {
-       Menu("Andi", true, "DISKON30");
+        Scanner sc = new Scanner(System.in);
+        String kodePromo = "DISKON30";
+        boolean isMember = true;
+        Menu("Andi", isMember, kodePromo);
+        System.out.print("\nMasukkan nomor menu yang ingin Anda pesan: ");
+        int pilihanMenu = sc.nextInt();
+
+        while (pilihanMenu<1 || pilihanMenu>6) {
+            System.out.println("Pilihan menu tidak valid. Silahkan maasukkan nomor menu yang benar (1-6): ");
+            pilihanMenu = sc.nextInt();
+        }
+        System.out.print("Masukkan jumlah item yang ingin dipesan: ");
+        int banyakItem = sc.nextInt();
+
+        int totalHarga = hitungTotalHarga13(pilihanMenu, banyakItem, isMember, kodePromo);
+        System.out.println("Total harga untuk pesanan Anda: Rp " + totalHarga);
     }
 }
