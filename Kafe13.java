@@ -28,11 +28,9 @@ public class Kafe13 {
     public static int hitungTotalHarga13(int pilihanMenu, int banyakItem, boolean isMember, String kodePromo){
         int[]hargaItems = {15000, 20000, 22000, 12000, 10000, 18000};
         int hargaTotal = hargaItems[pilihanMenu-1]*banyakItem;
-
         if (isMember==true){
             hargaTotal *= 0.9;
         }
-
         if (kodePromo.equals("DISKON50")) {
             hargaTotal *= 0.5;
         } else if (kodePromo.equals("DISKON30")) {
