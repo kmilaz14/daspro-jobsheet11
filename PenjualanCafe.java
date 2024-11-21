@@ -12,7 +12,7 @@ public class PenjualanCafe {
 
     static String[] menu = {"Kopi", "Teh", "Es Degan", "Roti Bakar", "Gorengan"};
 
-    public void main(String[] args) {
+    public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         boolean program = true;
 
